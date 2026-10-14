@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FloraGrid: Companion Planting & Garden Layout Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="brand">
+            <span class="brand-icon">🌱</span>
+            <h1>FloraGrid</h1>
+            <span class="tagline">Companion Planting & Garden Layout Planner</span>
+        </div>
+        <div class="header-actions">
+            <button id="btn-clear" class="btn secondary" title="Clear entire garden grid">Clear Grid</button>
+            <button id="btn-export" class="btn primary" title="Export garden layout and ledger">Export Summary</button>
+        </div>
+    </header>
+
+    <main class="app-container">
+        <aside class="sidebar">
+            <section class="panel">
+                <h2>Crop Palette</h2>
+                <p class="hint">Drag or click to place crops on your grid.</p>
+                <div class="crop-search">
+                    <input type="text" id="search-crops" placeholder="Search crops..." aria-label="Search crops">
+                </div>
+                <div id="crop-list" class="crop-list" role="region" aria-label="Available crops">
+                    <!-- Dynamically populated -->
+                </div>
+            </section>
+
+            <section class="panel">
+                <h2>Grid Settings</h2>
+                <div class="setting-group">
+                    <label for="grid-rows">Rows:</label>
+                    <input type="number" id="grid-rows" min="3" max="12" value="6">
+                </div>
+                <div class="setting-group">
+                    <label for="grid-cols">Columns:</label>
+                    <input type="number" id="grid-cols" min="3" max="12" value="8">
+                </div>
+                <button id="btn-resize" class="btn secondary full">Update Grid Size</button>
+            </section>
+        </aside>
+
+        <section class="workspace">
+            <div class="workspace-toolbar">
+                <div class="legend">
+                    <span class="legend-item"><span class="dot good"></span> Beneficial Pair</span>
+                    <span class="legend-item"><span class="dot bad"></span> Antagonist Pair</span>
+                </div>
+                <div class="health-score">
+                    <span>Garden Synergy Score: <strong id="score-val">100</strong>%</span>
+                </div>
+            </div>
+
+            <div class="grid-wrapper">
+                <div id="garden-grid" class="garden-grid" role="grid" aria-label="Garden layout grid">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+
+            <div class="analysis-panel">
+                <h3>Companion Synergy Ledger</h3>
+                <div id="ledger-content" class="ledger-content">
+                    <p class="empty-ledger">Add crops to your garden grid to analyze companion relationships and harvest tips.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for export summary -->
+    <div id="export-modal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Garden Master Plan</h2>
+                <button id="modal-close" class="btn-close" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <pre id="export-text"></pre>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-copy" class="btn primary">Copy to Clipboard</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
